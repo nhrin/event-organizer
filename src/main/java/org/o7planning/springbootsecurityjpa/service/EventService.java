@@ -29,7 +29,7 @@ public class EventService {
         return event;
     }
 
-    public AppEvent findById(int id) {
+    public AppEvent findById(long id) {
         AppEvent event = eventDAO.findById(id);
         return event;
     }
