@@ -9,8 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
-import javax.persistence.Query;
-import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -33,9 +31,9 @@ public class EventDAO {
         return events;
     }
 
-    public AppEvent findById(int id) {
+    public AppEvent findById(long id) {
         try {
-            AppEvent event = entityManager.find(AppEvent.class, (long) id);
+            AppEvent event = entityManager.find(AppEvent.class, id);
 
             return event;
         } catch (NoResultException e) {

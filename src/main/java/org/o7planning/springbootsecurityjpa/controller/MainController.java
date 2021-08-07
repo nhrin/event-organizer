@@ -1,17 +1,19 @@
 package org.o7planning.springbootsecurityjpa.controller;
-import java.security.Principal;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import lombok.RequiredArgsConstructor;
 import org.o7planning.springbootsecurityjpa.entity.AppEvent;
 import org.o7planning.springbootsecurityjpa.service.EventService;
 import org.o7planning.springbootsecurityjpa.utils.WebUtils;
+import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpSession;
+import java.security.Principal;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -19,11 +21,22 @@ public class MainController {
 
     private final EventService eventService;
 
+    private final ObjectFactory<HttpSession> httpSessionFactory;
+
     @PostMapping(value = "/save-event")
     public String saveEvent(AppEvent appEvent, Model model) {
         model.addAttribute("message", appEvent.getEventName() + " saved");
         eventService.save(appEvent);
         return "saveEvent";
+    }
+
+    @GetMapping(value = "/accept-event")
+    public String acceptEvent(@RequestParam("eventId") Long eventId, Model model) {
+
+        long userId = (long)httpSessionFactory.getObject().getAttribute("userId");
+        eventService.acceptEvent(eventId, userId);
+
+        return "eventDetails";
     }
 
     @GetMapping(value = "/event-details")

@@ -16,8 +16,9 @@
 
 
 <tr th:each="event : ${events}">
-   <span th:text="${event.eventName}"></span>
-    <a th:href="@{/event-details(eventId=${event.eventId})}">more details</a>
+    <td><p th:text="${event.eventName}"/></td>
+    <td><p><a th:href="@{/event-details(eventId=${event.eventId})}">more details</a></p></td>
+    <td><p><a th:href="@{/accept-event(eventId=${event.eventId}, )}">accept event</a></p></td>
 </tr>
 
 </body>
