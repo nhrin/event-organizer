@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User Info</title>
+</head>
+<body>
+<!-- Include _menu.html -->
+<th:block th:include="/_menu"></th:block>
+
+
+<h2>Welcome :  <span th:utext="${#request.userPrincipal.name}"></span></h2>
+<h2>If you are admin, you can create event</h2>
+<h2><form action="new-event" target="_blank">
+    <button>Create new event</button>
+</form>
+</h2>
+<h3>Bellow you can see list of events</h3>
+
+
+<tr th:each="event : ${events}">
+    <td><p></p></td>
+    <td th:text="${event.eventName}"/>
+    <td><button><a th:href="@{/event-details(eventId=${event.eventId})}">more details</a></button></td>
+    <td><button><a th:href="@{/accept-event(eventId=${event.eventId})}">accept event</a></button></td>
+    <td><button><a th:href="@{/who-goes(eventId=${event.eventId})}">who goes</a></button></td>
+    <td><button><a th:href="@{/delete-event(eventId=${event.eventId})}">delete</a></button></td>
+</tr>
+
+</body>
+
+</html>

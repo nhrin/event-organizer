@@ -8,10 +8,10 @@
         <version>2.5.3</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>org.o7planning</groupId>
-    <artifactId>SpringBootSecurityJPA</artifactId>
+    <groupId>org.nhrin</groupId>
+    <artifactId>EventOrginizer</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>SpringBootSecurityJPA</name>
+    <name>EventOrginizer</name>
     <description>Demo project for Spring Boot</description>
     <properties>
         <java.version>11</java.version>
